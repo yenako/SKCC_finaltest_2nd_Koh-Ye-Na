@@ -1402,3 +1402,34 @@ location 'hdfs://ts1.test.com:8020/user/posts'
 ;
 
 </code></pre>
+
+
+## 5.
+<pre><code>
+[centos@ts1 ~]$ mysql -u training -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 919
+Server version: 5.5.60-MariaDB MariaDB Server
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use test;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [test]> cREATE TABLE `results` (
+    -> `id` int(10) NOT NULL AUTO_INCREMENT,
+    -> `first_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+    -> `last_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+    -> `num_posts` int(10)  NOT NULL,
+    ->  PRIMARY KEY (`id`)
+    ->  )
+    -> ;
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [test]>
+</code></pre>
