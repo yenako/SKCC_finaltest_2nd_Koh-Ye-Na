@@ -159,6 +159,57 @@ and amount < 0;
 select * from solution;
 
 ### Problem 4
+CREATE EXTERNAL TABLE employee1 (
+id string,
+fname string,
+lname string,
+address string,
+city string,
+state string,
+zip string
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t;'
+LOCATION 'hdfs://localhost:8020/user/training/problem4/data/employee1'
+;
+
+CREATE EXTERNAL TABLE employee2 (
+id string,
+unknown string,
+lname string,
+fname string,
+address string,
+city string,
+state string,
+zip string
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION 'hdfs://localhost:8020/user/training/problem4/data/employee2'
+;
+
+CREATE EXTERNAL TABLE solution (
+id string,
+fname string,
+lname string,
+address string,
+city string,
+state string,
+zip string
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t;'
+LOCATION 'hdfs://localhost:8020/user/training/problem4/solution'
+;
+
+insert overwrite table solution
+select * from (
+select id, initcap(fname), initcap(lname), address, city, state, substr(zip, 1, 5) as zip
+from employee1 a where a.state = 'CA'
+union all
+select id, initcap(fname), initcap(lname), address, city, state, substr(zip, 1, 5) as zip
+from employee2 b where b.state = 'CA'
+) aa ;
 
 ### Problem 5
 
