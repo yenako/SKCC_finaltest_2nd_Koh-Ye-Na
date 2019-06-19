@@ -119,7 +119,7 @@ Time taken: 43.865 seconds, Fetched: 60 row(s)
 
 
 #### Problem 2
-
+<pre><code>
 CREATE EXTERNAL TABLE employee (
 id int,
 fname string,
@@ -137,9 +137,9 @@ INPUTFORMAT "parquet.hive.DeprecatedParquetInputFormat"
 OUTPUTFORMAT "parquet.hive.DeprecatedParquetOutputFormat"
 LOCATION 'hdfs://localhost:8020/user/training/problem2/data/employee'
 ;
-
+</code></pre>
 #### Problem 3
-
+<pre><code>
 CREATE EXTERNAL TABLE solution (
 id string,
 fname string,
@@ -157,8 +157,9 @@ where a.custid = b.id
 and amount < 0;
 
 select * from solution;
-
+</code></pre>
 ### Problem 4
+<pre><code>
 CREATE EXTERNAL TABLE employee1 (
 id string,
 fname string,
@@ -210,9 +211,9 @@ union all
 select id, initcap(fname), initcap(lname), address, city, state, substr(zip, 1, 5) as zip
 from employee2 b where b.state = 'CA'
 ) aa ;
-
+</code></pre>
 ### Problem 5
-
+<pre><code>
 use problem5;
 
 select c.fname, c.lname, c.city, c.state
@@ -224,6 +225,7 @@ select e.fname, e.lname, e.city, e.state
 from employee e
 where e.state = 'CA'
 and e.city = 'Palo Alto';
+</code></pre>
 
 <pre><code>
 [training@localhost ~]$ hive -f /home/training/problem5/solution.sql
@@ -264,7 +266,7 @@ Time taken: 28.491 seconds, Fetched: 12 row(s)
 
 ### Problem 6
 Q6. There are privacy concerns about the employee data that is stored on the cluster. Your task is to remove any age information from the employee data by creating a new table for the data analysts to query against.
-
+<pre><code>
 CREATE EXTERNAL TABLE problem6.solution(
 id int,
 fname string,
@@ -293,12 +295,12 @@ from problem6.employee
 ;
 
 select * from problem6.solution;
-
+</code></pre>
 ### Problem 7
 Q7. Generate a report that contains all of the Seattle employee names in sorted order.
-
+<pre><code>
 select concat(e.fname, ' ', e.lname) as name from employee e where e.city = 'Seattle' sort by name;
-
+</code></pre>
 ### Problem 8
 Q8. Use Sqoop to export customer data from HDFS into a MySQL database table. Place the data in the solution table in MySQL, which has been created and is currently empty.
 
@@ -526,16 +528,16 @@ java.lang.InterruptedException
 
 ### Problem 9
 Q9. Your company is being acquired by another company. To prepare for this acquisition, update the customer records to guarantee there will be no duplicate IDs with their existing customer IDs.
-
+<pre><code>
 use problem9;
 
 CREATE TABLE solution AS SELECT concat('A', '', id) as newId, fname, lname, address, city, state, zip, birthday FROM problem9.customer;
 
 select * from problem9.solution;
-
+</code></pre>
 ### Problem 10
 Q10. Your boss needs specialized reports using the billing data and is constantly asking for help to write SQL queries. Create a database view in the metastore so that your boss has customer and billing data joined.
-
+<pre><code>
 use problem10;
 
 create view solution as
@@ -544,8 +546,10 @@ from billing b
 join customer c on (b.id = c.id);
 
 select * from problem10.solution;
-
+</code></pre>
 ### Problem 11
 Q11. Several analysis questions are described below and you will need to write the SQL code to answer them. You can use whichever tool you prefer? Impala or Hive ? using whichever method you like best, including shell, script, or the Hue Query Editor, to run your queries.
 
+<pre><code>
 select count(o.order_id) as cnt, prod_id from order_details o group by o.prod_id order by cnt desc;
+</code></pre>
