@@ -673,7 +673,7 @@ Bye
 mysql  Ver 15.1 Distrib 5.5.60-MariaDB, for Linux (x86_64) using readline 5.1
 </cdoe></pre>
 
-#### 1.c Install Cloudera Manager
+### 1.c Install Cloudera Manager
 <pre><code>
 [centos@ip-172-31-7-255 ~]$ sudo vi /etc/hosts
 [centos@ip-172-31-7-255 ~]$ sudo hostnamectl set-hostname ts1.test.com
@@ -1203,7 +1203,7 @@ ts1.test.com
 </code></pre>
 
 
-### 2. In MySQL create the sample tables that will be used for the rest of the tests
+## 2. In MySQL create the sample tables that will be used for the rest of the tests
 
 <pre><code>
 Using username "centos".
@@ -1227,7 +1227,7 @@ Database changed
 MariaDB [test]>
 </code></pre>
 
-### 3. Extract tables authors and posts from the database and create Hive tables
+## 3. Extract tables authors and posts from the database and create Hive tables
 <pre><code>
 [centos@ts1 ~]$ sqoop import --connect jdbc:mysql://172.31.7.255:3306/test --username training --password training --table authors --target-dir /user/authors
 Warning: /opt/cloudera/parcels/CDH-5.15.2-1.cdh5.15.2.p0.3/bin/../lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
